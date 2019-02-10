@@ -38,8 +38,7 @@ class BooksController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Books::findBySql("SELECT `books`.`id_book`,`name`,`price`,`author`,`authors`.`id_author`,`authors`.`surname`,`authors`.`books` FROM `books` LEFT JOIN `authors` ON `authors`.`id_author` = `books`.`id_author`"),
-            //'query' => Books::find()->leftJoin('authors','authors.id_author')->andWhere(['authors.id_author'=>'books.id_author']),
+            'query' => Books::findBySql("SELECT `books`.`id_book`,`name`,`price`,`author`,`authors`.`id_author`,`authors`.`surname`,`authors`.`book` FROM `books` LEFT JOIN `authors` ON `authors`.`id_author` = `books`.`id_author`"),
         ]);
         return $this->render('index',
             [

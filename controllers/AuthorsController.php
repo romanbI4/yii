@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Books;
 use Yii;
 use app\models\Authors;
 use yii\data\ActiveDataProvider;
@@ -35,15 +36,13 @@ class AuthorsController extends Controller
      */
     public function actionIndex()
     {
-        //'query' => Books::findBySql("SELECT `books`.`id_book`,`name`,`price`,`author`,`authors`.`id_author`,`authors`.`surname`,`authors`.`books` FROM `books` LEFT JOIN `authors` ON `authors`.`id_author` = `books`.`id_author`"),
         $dataProvider = new ActiveDataProvider([
-            'query' => Authors::findBySql("SELECT `authors`.`id_author`,`surname`,`books`,`books`.`id_book`,`books`.`name`,`books`.`price`,`books`.`author` FROM `authors` LEFT JOIN `books` ON `books`.`id_book` = `authors`.`id_book`"),
-            //'query' => Authors::find()->select('authors.*')->leftJoin('books', '`books`.`id_book` = `authors`.`id_book`'),
+            'query' => Authors::findBySql("SELECT `authors`.`id_author`,`surname`,`book`,`books`.`id_book`,`books`.`name`,`books`.`price`,`books`.`author` FROM `authors` RIGHT JOIN `books` ON `books`.`id_book` = `authors`.`id_book`"),
         ]);
-
-        return $this->render('index', [
+        return $this->render('index',
+            [
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
