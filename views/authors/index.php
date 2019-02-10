@@ -24,7 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_author',
             'surname',
             'books',
-            'id_book',
+            [
+                'attribute' => 'Id book',
+                'value' => 'books.id_book',
+            ],
+            [
+                'attribute' => 'Name',
+                'value' => 'books.name',
+            ],
+            [
+                'attribute' => 'Price',
+                'value' => 'books.price',
+            ],
+            [
+                'attribute' => 'Author',
+                'value' => 'books.author',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

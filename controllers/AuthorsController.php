@@ -37,8 +37,8 @@ class AuthorsController extends Controller
     {
         //'query' => Books::findBySql("SELECT `books`.`id_book`,`name`,`price`,`author`,`authors`.`id_author`,`authors`.`surname`,`authors`.`books` FROM `books` LEFT JOIN `authors` ON `authors`.`id_author` = `books`.`id_author`"),
         $dataProvider = new ActiveDataProvider([
-            //'query' => Authors::findBySql('SELECT `books`.`id_book`,`name`,`price`,`author`,`authors`.`id_author`,`authors`.`surname`,`authors`.`books` FROM `books` LEFT JOIN `authors` ON `authors`.`id_author` WHERE `authors`.`id_author` = `books`.`id_author`'),
-            'query' => Authors::find()->select('authors.*')->leftJoin('books', '`books`.`id_author` = `authors`.`id_author`')->with('books'),
+            'query' => Authors::findBySql("SELECT `authors`.`id_author`,`surname`,`books`,`books`.`id_book`,`books`.`name`,`books`.`price`,`books`.`author` FROM `authors` LEFT JOIN `books` ON `books`.`id_book` = `authors`.`id_book`"),
+            //'query' => Authors::find()->select('authors.*')->leftJoin('books', '`books`.`id_book` = `authors`.`id_book`'),
         ]);
 
         return $this->render('index', [

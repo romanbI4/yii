@@ -44,7 +44,6 @@ class Authors extends \yii\db\ActiveRecord
             'id_author' => 'Id Author',
             'surname' => 'Surname',
             'books' => 'Books',
-            'id_book' => 'Id Book',
         ];
     }
 
